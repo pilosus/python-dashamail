@@ -1,4 +1,22 @@
-from typing import Any, Optional, List
+"""
+Copyright 2022 Vitaly Samigullin and contributors. All rights reserved.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+SPDX-License-Identifier: Apache-2.0
+"""
+from typing import Any, List, Optional
+
 import requests
 
 from .exceptions import DashaMailAPIError
@@ -11,6 +29,7 @@ class DashaMailClient:
     DashaMail API client for Python
     https://dashamail.ru/api/
     """
+
     def __init__(
         self,
         api_key: str,
@@ -36,9 +55,7 @@ class DashaMailClient:
         error = json_response.get("msg", {})
         if error.get("err_code") != 0 and self.raise_for_error:
             raise DashaMailAPIError(
-                error_code=error.get("err_code"),
-                error_type=error.get("type"),
-                error_message=error.get("text")
+                error_code=error.get("err_code"), error_type=error.get("type"), error_message=error.get("text")
             )
 
         return json_response
@@ -136,9 +153,7 @@ class DashaMailClient:
         :param params: any other parameters expected by API method
         :return: ResponseType
         """
-        return self._request(
-            api_method="lists.upload", list_id=list_id, file=file_url, email=email_col_num, **params
-        )
+        return self._request(api_method="lists.upload", list_id=list_id, file=file_url, email=email_col_num, **params)
 
     def lists_add_member(self, list_id: int, email: str, **params: Any) -> ResponseType:
         """
@@ -218,9 +233,7 @@ class DashaMailClient:
         :param params: any other parameters expected by API method
         :return: ResponseType
         """
-        return self._request(
-            api_method="lists.move_member", member_id=member_id, list_id=list_id, **params
-        )
+        return self._request(api_method="lists.move_member", member_id=member_id, list_id=list_id, **params)
 
     def lists_copy_member(self, member_id: int, list_id: int, **params: Any) -> ResponseType:
         """
@@ -233,9 +246,7 @@ class DashaMailClient:
         :param params: any other parameters expected by API method
         :return: ResponseType
         """
-        return self._request(
-            api_method="lists.copy_member", member_id=member_id, list_id=list_id, **params
-        )
+        return self._request(api_method="lists.copy_member", member_id=member_id, list_id=list_id, **params)
 
     def lists_last_status(self, email: str, list_id: int, **params: Any) -> ResponseType:
         """
