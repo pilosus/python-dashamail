@@ -37,4 +37,4 @@ See `CONTRIBUTING.rst`_.
 
 .. _DashaMail: https://dashamail.ru/
 .. _DashaMail API: https://dashamail.ru/api/
-.. _CONTRIBUTING.rst: https://github.com/pilosus/python-dashamail/tree/master/CONTRIBUTING.rst
+.. _CONTRIBUTING.rst: https://github.com/pilosus/python-dashamail/tree/main/CONTRIBUTING.rst
